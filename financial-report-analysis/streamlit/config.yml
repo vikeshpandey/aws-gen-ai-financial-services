@@ -1,0 +1,6 @@
+credentials:
+  username: vikesh
+  password: Abcd1234#
+domain:
+  endpoint: https://search-natwest-document-z3nshiiifsblsvej5fjq2qzwny.us-east-1.es.amazonaws.com
+  index: annual-report
