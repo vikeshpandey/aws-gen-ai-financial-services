@@ -77,16 +77,22 @@ with input_container:
     with st.form(key='my_form', clear_on_submit=True):
         user_input = st.text_area("You:", key='input', height=100)
         submit_button = st.form_submit_button(label='Send')
+        # st.sidebar.write("Here is the uploaded transcript:\n")
+        # st.sidebar.text(st.session_state['context'])
 
     if submit_button and user_input:
         response = generate_response(st.session_state['context'], user_input)
         st.session_state['past'].append(user_input)
         st.session_state['generated'].append(response)
+        st.sidebar.write("Here is the uploaded transcript:\n")
+        st.sidebar.text(st.session_state['context'])
     elif uploaded_file is not None:
         stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
         st.session_state['context'] = stringio.read()
         st.session_state['past'].append('Can you confirm that you have read the trascript?')
-        st.session_state['generated'].append('Yes, I have read the transcript. Ask me anything about it.')   
+        st.session_state['generated'].append('Yes, I have read the transcript. Ask me anything about it.')
+        st.sidebar.write("Here is the uploaded transcript:\n")
+        st.sidebar.text(st.session_state['context'])
          
         
 # Conditional display of AI generated responses as a function of user provided prompts
